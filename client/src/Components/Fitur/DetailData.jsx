@@ -1,21 +1,17 @@
 
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import React, { useEffect, useState } from "react";
-import { FaUserPlus } from "react-icons/fa";
 import { API } from "../../config/API";
 import { useNavigate, useParams } from "react-router";
 
 export default function Detail() {
-  let navigate = useNavigate();
   const { id } = useParams();
 
   let { data: datainv } = useQuery("invoice2", async () => {
+    
     const response = await API.get("/invoice/" + id);
     return response.data;
   });
-
-  console.log(id);
-
   
   return (
 

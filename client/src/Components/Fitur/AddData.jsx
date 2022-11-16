@@ -33,7 +33,6 @@ export default function AddData({ addData, setAddData }) {
       await API.post("/invoice", form);
       alert("berhasil menambahkan data");
       setAddData(!addData);
-      navigate("/");
     } catch (error) {
       console.log(error);
     }

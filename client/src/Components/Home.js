@@ -12,8 +12,8 @@ import "./Home.css";
 
 function Home() {
 
+  const [addData, setAddData] = useState(false);
   const [invoice, setInvoice] = useState([]);
-
   const fetchData = async() => {
       const response = await API.get("/invoice");
       setInvoice(response.data);
@@ -51,13 +51,6 @@ function getFullTime(time) {
   return tglLahir
 }
 
-  const [formUpdate, setFormUpdate] = useState(false);
-  const [addData, setAddData] = useState(false);
-  const [modalDelete, setModalDelete] = useState(false);
-  const [DeleteData] = useState(false);
-  const [detailData, setDetail] = useState(false);
-  const [id, setId] = useState();
-
   const [form, setForm] = useState({ 
     invoice_id: "",
     issue_date: "",
@@ -68,29 +61,10 @@ function getFullTime(time) {
     to_desc: "",
   });
 
-
-
-  let handleDelete = (id) => {
-    setModalDelete(true);
-    setId(id);
-  };
-
-  let handleDetail = (id) => {
-    setDetail(true);
-    setId(id);
-  };
-
-  let handleUpdate = async (id) => {
-    setFormUpdate(true);
-    setId(id);
-  };
   
   return (
     <>
-    {modalDelete && <ConfirmData modalDelete={modalDelete} setModalDelete={setModalDelete} DeleteData={DeleteData} id={id}/>}
-      {detailData && <DetailData id={id} getFullTime={getFullTime} tglLahir={getFullTime} setAddData={setDetail} />}
-      {addData && <AddData addData={addData} setAddData={setAddData} />}
-      {formUpdate && <UpdateData id={id} formUpdate={formUpdate} setFormUpdate={setFormUpdate} />}
+    
 
       <div style={{padding:"40px"}}>
         <h1 style={{alignItems:"center",display:"flex",fontSize:"20px", fontWeight:"bold"}}>
@@ -147,7 +121,7 @@ function getFullTime(time) {
                   <td className="py-4 px-6"  style={{display:"flex", border:"1px solid black", justifyContent:"center"}}>
                     
                     <Link to={`/updatedata/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}>Edit</Link> 
-                    <Link to={`/detail/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}  className="hover:bg-blue-800">Detail</Link>
+                    <Link to={`/detail/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}>Detail</Link>
                     <Link to={`/delete/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}>Delete</Link>
                   </td>
                 </tr>    

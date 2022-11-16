@@ -4,7 +4,7 @@ import { FaUserPlus } from "react-icons/fa";
 import { API } from "../../config/API";
 import { useNavigate, useParams } from "react-router";
 
-export default function Update({}) {
+export default function Update() {
   let navigate = useNavigate();
   const { id } = useParams();
 
