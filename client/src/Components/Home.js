@@ -1,34 +1,21 @@
 import { FaFolder } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import { useQuery } from "react-query";
 import { API } from "../config/API";
-import AddData from "./Fitur/AddData";
-import UpdateData from "./Fitur/UpdateData";
-import ConfirmData from "./Fitur/ComfirmData";
-import DetailData from "./Fitur/DetailData";
-import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import "./Home.css";
-
 
 function Home() {
   const [invoice, setInvoice] = useState([]);
  
   const fetchData = async() => {
-    
       const response = await API.get("/invoice");
       setInvoice(response.data);
- 
-      
   }
-
 
   useEffect(() => {
       fetchData();
   }, []);
 
-
-  
 let month = [
   "Januari",
   "Februari",
@@ -44,7 +31,6 @@ let month = [
   "Desember"
 ]
 
-
 function getFullTime(time) {
   let all = new Date(time);
   let date = all.getDate()
@@ -53,8 +39,6 @@ function getFullTime(time) {
   let tglLahir = `${date} ${month[monthIndex]} ${year}`
   return tglLahir
 }
-
- 
 
   const [form, setForm] = useState({ 
     invoice_id: "",
@@ -65,7 +49,6 @@ function getFullTime(time) {
     to_name: "",
     to_desc: "",
   });
-
   
   return (
     <>
@@ -112,9 +95,8 @@ function getFullTime(time) {
                   <td style={{border:"1px solid black", padding:"5px 50px"}}>{item.from_name}</td>
                   <td style={{border:"1px solid black", padding:"5px 50px"}}>{item.to_name}</td>
                   <td className="py-4 px-6"  style={{display:"flex", border:"1px solid black", justifyContent:"center"}}>
-                    
                     <Link to={`/updatedata/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}>Edit</Link> 
-                    <Link to={`/detail/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}  className="hover:bg-blue-800">Detail</Link>
+                    <Link to={`/detail/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}} >Detail</Link>
                     <Link to={`/delete/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}>Delete</Link>
                   </td>
                 </tr>    
