@@ -7,13 +7,15 @@ import { useNavigate, useParams } from "react-router";
 export default function Detail() {
   const { id } = useParams();
 
-  let { data: datainv } = useQuery("invoice2", async () => {
-  
+  const [invoice, setInvoice] = useState([]);
+
+  let data = useQuery("invoice2", async () => {
     const response = await API.get("/invoice/" + id);
-    return response.data;
+    setInvoice(response.data);
   });
   
   return (
+    <>
 
         <div className="centered w-[90%]" style={{backgroundColor:"#E1E1E1", padding:"20px"}}>
           <div style={{display:"flex"}}>
@@ -35,30 +37,30 @@ export default function Detail() {
             <div style={{flex:"30%",  maxWidth:"30%"}}>
               <div>
                 <span>From&nbsp;|&nbsp;</span>
-                <span>{datainv.from_name}</span> 
+                <span>{invoice.from_name}</span> 
               </div>
               <div>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span>{datainv.from_desc}</span> 
+                <span>{invoice.from_desc}</span> 
               </div>
             </div>
           </div>
           <div style={{display:"flex", padding:"40px",minHeight:"200px"}}>
             <div style={{flex:"70%"}}>
-                <h1>Invoice ID&nbsp;&nbsp;&nbsp;|&nbsp;<span>{datainv.invoice_id}</span> </h1>
-                <h1>Issue Date&nbsp;&nbsp;|&nbsp;<span>{datainv.issue_date}</span> </h1>
-                <h1>Dude Date&nbsp;|&nbsp;<span>{datainv.due_date}</span> </h1>
-                <h1>Subject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span>{datainv.subject}</span> </h1>
+                <h1>Invoice ID&nbsp;&nbsp;&nbsp;|&nbsp;<span>{invoice.invoice_id}</span> </h1>
+                <h1>Issue Date&nbsp;&nbsp;|&nbsp;<span>{invoice.issue_date}</span> </h1>
+                <h1>Dude Date&nbsp;|&nbsp;<span>{invoice.due_date}</span> </h1>
+                <h1>Subject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span>{invoice.subject}</span> </h1>
                
             </div>
             <div style={{flex:"30%", maxWidth:"30%"}}>
               <div>
                 <span>For&nbsp;&nbsp;&nbsp;|&nbsp;</span>
-                <span>{datainv.to_name}</span> 
+                <span>{invoice.to_name}</span> 
               </div>
               <div>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span>{datainv.to_desc}</span> 
+                <span>{invoice.to_desc}</span> 
               </div>
             </div>
           </div>
@@ -72,6 +74,6 @@ export default function Detail() {
 
     
       </div>
-
+      </>
   );
 }

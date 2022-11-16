@@ -78,8 +78,7 @@ function getFullTime(time) {
                 </th>
                 <th scope="col" className="py-3 px-6" style={{border:"1px solid black"}}>
                   to invoice
-                </th>
-               
+                </th> 
                 <th scope="col" className="py-3 px-6" style={{border:"1px solid black"}}> 
                   action
                 </th>

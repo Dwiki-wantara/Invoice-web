@@ -49,17 +49,7 @@ export default function Update() {
     });
   };
 
-  const handleSubmit = useMutation(async (e) => {
-    try {
-      // e.preventDefault();
-      await API.patch(`/invoice`, form);
-      alert("berhasil mengubah data");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-   
-  });
+
 
   const updateProduct = async(e) => {
     e.preventDefault();   
@@ -72,8 +62,6 @@ export default function Update() {
     });
     navigate('/')
   }
-
-
   
   return (
     <>
