@@ -4,7 +4,7 @@ import { FaUserPlus } from "react-icons/fa";
 import { API } from "../../config/API";
 import { useNavigate } from "react-router";
 
-export default function AddData({ addData, setAddData }) {
+export default function AddData() {
   let navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -29,10 +29,10 @@ export default function AddData({ addData, setAddData }) {
 
   const handleSubmit = useMutation(async (e) => {
     try {
-      // e.preventDefault();
+      e.preventDefault();
       await API.post("/invoice", form);
       alert("berhasil menambahkan data");
-      setAddData(!addData);
+      navigate("/")
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +85,7 @@ export default function AddData({ addData, setAddData }) {
           <button type="submit" className="w-full m-auto py-2 bg-blue-600 hover:bg-white-600 rounded-md font-bold text-white mb-3">
             Simpan
           </button>
-          <button  className="w-full m-auto py-2 bg-white border border-blue-600 rounded-md font-bold text-dark-600 hover:bg-transparent" onClick={() => setAddData(!addData)}>
+          <button  className="w-full m-auto py-2 bg-white border border-blue-600 rounded-md font-bold text-dark-600 hover:bg-transparent" onClick={() =>navigate("/")}>
             Kembali
           </button>
         </form>

@@ -8,7 +8,7 @@ export default function Detail() {
   const { id } = useParams();
 
   let { data: datainv } = useQuery("invoice2", async () => {
-    
+  
     const response = await API.get("/invoice/" + id);
     return response.data;
   });

@@ -6,17 +6,20 @@ import AddData from "./Fitur/AddData";
 import UpdateData from "./Fitur/UpdateData";
 import ConfirmData from "./Fitur/ComfirmData";
 import DetailData from "./Fitur/DetailData";
+import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import "./Home.css";
 
 
 function Home() {
-
-  const [addData, setAddData] = useState(false);
   const [invoice, setInvoice] = useState([]);
+ 
   const fetchData = async() => {
+    
       const response = await API.get("/invoice");
       setInvoice(response.data);
+ 
+      
   }
 
 
@@ -51,6 +54,8 @@ function getFullTime(time) {
   return tglLahir
 }
 
+ 
+
   const [form, setForm] = useState({ 
     invoice_id: "",
     issue_date: "",
@@ -64,26 +69,14 @@ function getFullTime(time) {
   
   return (
     <>
-    
-
       <div style={{padding:"40px"}}>
         <h1 style={{alignItems:"center",display:"flex",fontSize:"20px", fontWeight:"bold"}}>
           <FaFolder size={50} /> &nbsp;&nbsp;Aplikasi Data Invoice
         </h1>
-       
         <div className="flex justify-end m-4">
-          <button
-            className="flex items-center gap-2 bg-green-700 text-white px-8 py-2 rounded-lg  hover:bg-blue-800 mr-2"
-            onClick={() => setAddData(!addData)}>
-           Add Invoice
-          </button>
-          <button
-            className="flex items-center gap-2 bg-orange-700 text-white px-8 py-2 rounded-lg  hover:bg-blue-800"
-           >
-           Add Item
-          </button>
-        </div>
-        
+            <Link to={`/adddata`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"5px 10px",backgroundColor:"green", marginRight:"5px"}}>Add Data</Link> 
+            <Link  style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"5px 10px",backgroundColor:"green", marginRight:"5px"}}>Add Item</Link> 
+        </div>        
         <div className="overflow-x-auto rounded-md border">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
             <thead className="uppercase dark:bg-blue-700 text-white" style={{textAlign:"center"}}>
@@ -121,7 +114,7 @@ function getFullTime(time) {
                   <td className="py-4 px-6"  style={{display:"flex", border:"1px solid black", justifyContent:"center"}}>
                     
                     <Link to={`/updatedata/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}>Edit</Link> 
-                    <Link to={`/detail/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}>Detail</Link>
+                    <Link to={`/detail/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}  className="hover:bg-blue-800">Detail</Link>
                     <Link to={`/delete/${item.id}`} style={{textDecoration:"none",color:"white", border:"1px solid black", padding:"1px 10px",backgroundColor:"green", marginRight:"5px"}}>Delete</Link>
                   </td>
                 </tr>    

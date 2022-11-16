@@ -5,7 +5,8 @@ import { API } from "../../config/API";
 export default function Confirm(){
   const navigate = useNavigate();
   const {id} = useParams();
-  let handleDelete = async () => {
+  let handleDelete = async (e) => {
+    e.preventDefault();
     await API.delete(`/invoice/${id}`);
     navigate("/");
   };

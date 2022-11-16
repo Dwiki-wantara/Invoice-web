@@ -61,10 +61,8 @@ export default function Update() {
    
   });
 
-
   const updateProduct = async(e) => {
-    e.preventDefault();
-   
+    e.preventDefault();   
     await fetch(`http://localhost:8080/invoice/${id}`,{
         method: "PUT",
         body: JSON.stringify(form),
